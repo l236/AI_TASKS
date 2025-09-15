@@ -1,2 +1,2 @@
 # AI_TASKS
-A wonderful beginning to Germany.
+A series of tasks in AI.

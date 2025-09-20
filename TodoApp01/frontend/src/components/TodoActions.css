@@ -1,0 +1,74 @@
+/* TodoActions.css */
+.todo-actions {
+  border-top: 2px solid #f0f0f0;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 12px 24px;
+  border: 2px solid #e1e5e9;
+  background: white;
+  color: #666;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.action-btn:hover:not(:disabled) {
+  border-color: #667eea;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.action-btn.danger {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+.action-btn.danger:hover:not(:disabled) {
+  background: #f44336;
+  color: white;
+  border-color: #f44336;
+}
+
+.clear-completed {
+  border-color: #ff9800;
+  color: #ff9800;
+}
+
+.clear-completed:hover:not(:disabled) {
+  background: #ff9800;
+  color: white;
+  border-color: #ff9800;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .action-btn {
+    width: 100%;
+    min-width: auto;
+  }
+}

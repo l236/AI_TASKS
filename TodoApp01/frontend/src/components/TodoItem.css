@@ -1,0 +1,244 @@
+/* TodoItem.css */
+.todo-item {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  counter-increment: todo-counter;
+}
+
+.todo-item::before {
+  content: counter(todo-counter);
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.todo-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
+}
+
+.todo-item.completed {
+  opacity: 0.7;
+  background: #e8f5e8;
+  border-color: #4caf50;
+}
+
+.todo-item.completed::before {
+  background: #4caf50;
+}
+
+.todo-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.todo-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  word-break: break-word;
+}
+
+.todo-item.completed .todo-title {
+  text-decoration: line-through;
+  color: #666;
+}
+
+.todo-description {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.todo-item.completed .todo-description {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todo-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.todo-date {
+  display: block;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.todo-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.complete-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.complete-btn:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+}
+
+.complete-btn.completed {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.complete-btn.completed:hover {
+  transform: none;
+  background: #ccc;
+}
+
+.edit-btn {
+  background: #2196f3;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #1976d2;
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #da190b;
+  transform: translateY(-1px);
+}
+
+/* 编辑模式样式 */
+.edit-form {
+  width: 100%;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  outline: none;
+}
+
+.edit-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.save-btn {
+  background: #4caf50;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #45a049;
+}
+
+.cancel-btn {
+  background: #ccc;
+  color: #333;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #bbb;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .todo-item {
+    padding: 15px;
+    margin-left: 15px;
+  }
+  
+  .todo-item::before {
+    left: -10px;
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+  }
+  
+  .todo-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .todo-actions {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  
+  .todo-actions button {
+    flex: 1;
+    min-width: 60px;
+  }
+}

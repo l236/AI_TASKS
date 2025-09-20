@@ -1,0 +1,61 @@
+/* TodoList.css */
+.todo-list {
+  min-height: 200px;
+}
+
+.todo-list.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  font-size: 18px;
+  color: #666;
+  padding: 40px;
+}
+
+.todo-list.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.empty-state h3 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.todo-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: todo-counter;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .empty-state {
+    padding: 40px 15px;
+  }
+  
+  .empty-state h3 {
+    font-size: 2.5rem;
+  }
+  
+  .empty-state p {
+    font-size: 1rem;
+  }
+}

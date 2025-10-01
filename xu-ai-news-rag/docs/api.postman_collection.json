@@ -1,0 +1,84 @@
+{
+  "info": {
+    "name": "xu-ai-news-rag",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for xu-ai-news-rag APIs"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:8080/api/auth/register", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api","auth","register"]},
+        "body": {"mode": "raw", "raw": "{\n  \"username\": \"user1\",\n  \"password\": \"pass123\",\n  \"email\": \"u1@example.com\"\n}"}
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:8080/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api","auth","login"]},
+        "body": {"mode": "raw", "raw": "{\n  \"username\": \"user1\",\n  \"password\": \"pass123\"\n}"}
+      }
+    },
+    {
+      "name": "RAG - Ingest Text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:8080/api/rag/ingest/text", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api","rag","ingest","text"]},
+        "body": {"mode": "raw", "raw": "{\n  \"sourceName\": \"Demo\",\n  \"title\": \"AI News\",\n  \"content\": \"OpenAI and Qwen release new models...\"\n}"}
+      }
+    },
+    {
+      "name": "RAG - Search",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:8080/api/rag/search", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api","rag","search"]},
+        "body": {"mode": "raw", "raw": "{\n  \"query\": \"new models\",\n  \"topK\": 5\n}"}
+      }
+    },
+    {
+      "name": "Ingest - Excel",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"}
+        ],
+        "url": {"raw": "http://localhost:8080/api/rag/ingest/excel", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api","rag","ingest","excel"]},
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {"key": "file", "type": "file", "src": "samples/news.xlsx"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "Analytics - Top10 Keywords",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}"}
+        ],
+        "url": {"raw": "http://localhost:8080/api/analytics/keywords/top10", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api","analytics","keywords","top10"]}
+      }
+    }
+  ],
+  "variable": [
+    {"key": "token", "value": ""}
+  ]
+}

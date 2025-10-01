@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: xu-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=xunews
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=app123
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./volumes/mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: xu-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./volumes/ollama:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+
+  rag-worker:
+    build: ./rag-worker
+    container_name: xu-rag-worker
+    ports:
+      - "8001:8001"
+    environment:
+      - OLLAMA_ENDPOINT=http://ollama:11434
+      - FAISS_DIR=/data/faiss
+    volumes:
+      - ./volumes/faiss:/data/faiss
+    depends_on:
+      - ollama
+
+  backend:
+    build: ./backend
+    container_name: xu-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/xunews?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=app
+      - SPRING_DATASOURCE_PASSWORD=app123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - RAG_WORKER_URL=http://rag-worker:8001
+      - SPRING_PROFILES_ACTIVE=dev
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql:
+  ollama:
+  faiss:

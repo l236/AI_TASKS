@@ -35,7 +35,12 @@ public class AnalyticsService {
         return freq.entrySet().stream()
                 .sorted((a,b) -> Integer.compare(b.getValue(), a.getValue()))
                 .limit(topN)
-                .map(e -> Map.of("keyword", e.getKey(), "count", e.getValue()))
+                .map(e -> {
+                    Map<String, Object> m = new HashMap<>();
+                    m.put("keyword", e.getKey());
+                    m.put("count", e.getValue());
+                    return m;
+                })
                 .toList();
     }
 }

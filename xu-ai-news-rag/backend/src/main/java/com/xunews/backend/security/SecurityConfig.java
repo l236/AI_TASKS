@@ -26,12 +26,10 @@ import java.util.List;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-
-    private final JwtAuthFilter jwtAuthFilter;
     private final UserRepository userRepository;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> {})
@@ -43,6 +41,11 @@ public class SecurityConfig {
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
+    }
+
+    @Bean
+    public JwtAuthFilter jwtAuthFilter(JwtService jwtService, UserDetailsService uds) {
+        return new JwtAuthFilter(jwtService, uds);
     }
 
     @Bean

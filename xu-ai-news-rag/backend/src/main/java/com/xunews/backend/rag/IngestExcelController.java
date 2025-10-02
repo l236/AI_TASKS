@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +68,7 @@ public class IngestExcelController {
 
     private String getCellString(Row row, int idx) {
         if (row.getCell(idx) == null) return "";
-        row.getCell(idx).setCellType(org.apache.poi.ss.usermodel.Cell.CELL_TYPE_STRING);
-        return row.getCell(idx).getStringCellValue();
+        DataFormatter formatter = new DataFormatter();
+        return formatter.formatCellValue(row.getCell(idx));
     }
 }

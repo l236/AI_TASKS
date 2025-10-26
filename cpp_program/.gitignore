@@ -1,0 +1,23 @@
+# CMake build directory
+build/
+
+# Compiled Object files
+*.o
+*.o.d
+
+# Executables
+fsmanager
+
+# Static libraries
+*.a
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db

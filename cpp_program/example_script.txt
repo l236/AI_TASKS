@@ -1,0 +1,59 @@
+# Example script for File System Manager
+# This script demonstrates various commands
+
+# Show current directory
+pwd
+
+# List files
+ls -l
+
+# Create a test directory
+mkdir test_files
+
+# Change to test directory
+cd test_files
+
+# Create some test files
+touch file1.txt
+touch file2.txt
+touch file3.log
+
+# Write content to files
+echo "This is file 1" > file1.txt
+echo "This is file 2" > file2.txt
+echo "Error occurred" > file3.log
+
+# List files again
+ls
+
+# Search for files containing "file"
+grep "file" *.txt
+
+# Show file sizes
+size file1.txt
+size file2.txt
+
+# Copy a file
+cp file1.txt file1_backup.txt
+
+# List files to see the copy
+ls
+
+# Show directory statistics
+stats
+
+# Go back to parent directory
+cd ..
+
+# Show directory tree
+tree 2
+
+# Find all .txt files
+find *.txt
+
+# Clean up - delete test directory
+rm test_files
+
+# Show final directory listing
+ls
+

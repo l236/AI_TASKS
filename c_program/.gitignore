@@ -1,0 +1,21 @@
+# Compiled files
+contact_book
+*.o
+*.out
+
+# Build artifacts
+*.dSYM/
+
+# Data files (keep empty)
+contacts.txt
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
